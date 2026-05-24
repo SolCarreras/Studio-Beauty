@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.hero {
+  height: 100vh;
+
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,0.5),
+      rgba(0,0,0,0.5)
+    ),
+    url('/hero.jpg');
+
+  background-size: cover;
+  background-position: center;
+
+  color: white;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 25px 60px;
+}
+
+nav h1 {
+  font-size: 45px;
+  color: #f7d6e0;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.hero-content {
+  height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-left: 80px;
+
+  max-width: 600px;
+}
+
+.hero-content h2 {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 22px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+button {
+  width: 220px;
+
+  padding: 15px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #f7d6e0;
+  color: black;
+
+  font-size: 18px;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #ffffff;
+}
+
+
+.services,
+.booking,
+.contact {
+
+  padding: 100px 80px;
+}
+
+.services {
+  background-color: #fff5f7;
+}
+
+.services h2,
+.booking h2,
+.contact h2 {
+
+  font-size: 42px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.cards {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: stretch;
+
+    gap: 30px;
+
+    flex-wrap: wrap;
+
+    margin-top: 60px;
+}
+
+
+.card {
+
+    background: white;
+
+    width: 320px;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+    transition: 0.3s;
+
+    text-align: center;
+
+    padding-bottom: 30px;
+}
+
+
+.card:hover {
+
+    transform: translateY(-10px);
+}
+
+
+.card img {
+
+    width: 100%;
+
+    height: 250px;
+
+    object-fit: cover;
+}
+
+
+.card h3 {
+
+    margin-top: 25px;
+
+    font-size: 32px;
+
+    color: #222;
+}
+
+
+.card p {
+
+    padding: 20px;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+
+    color: #555;
+}
+
+
+.card span {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #484345;
+}
+
+
+
+
+
+
+
+
+
+
+.booking form {
+
+  max-width: 500px;
+
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.booking input {
+
+  padding: 15px;
+
+  border-radius: 10px;
+
+  border: 1px solid #ddd;
+
+  font-size: 16px;
+}
+
+.contact {
+
+  background-color: #111;
+
+  color: white;
+
+  text-align: center;
+}
+
+.contact p {
+
+  margin-bottom: 15px;
+
+  font-size: 18px;
+}
