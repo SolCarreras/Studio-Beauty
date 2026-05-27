@@ -1,11 +1,57 @@
 const express = require("express");
 const path = require("path");
+const session = require('express-session');
+
+const bcrypt = require('bcrypt');
+
+
 
 const app = express();
 
 app.use(express.json());
 
+app.use(session({
+
+    secret: 'peluqueria-secret',
+
+    resave: false,
+
+    saveUninitialized: false,
+
+    cookie: {
+
+        secure: false
+    }
+
+}));
+
+const adminUser = {
+
+    username: 'admin',
+
+    password: '$2b$10$ocGdUSZKWQKdjpVn/eHKkug28cM50MSbRio5AEBKffSGKXCQ8voWa'
+
+};
+
 const { connectDB, getPool } = require("./db");
+
+
+
+function authMiddleware(req, res, next) {
+
+    if (!req.session.user) {
+
+        return res.redirect('/login');
+
+    }
+
+    next();
+
+}
+
+
+
+
 
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, "../static")));
@@ -153,7 +199,7 @@ app.get('/api/reservas', async (req, res) => {
 
 });
 
-app.get('/admin', (req, res) => {
+app.get('/admin', authMiddleware, (req, res) => {
 
     res.sendFile(
 
@@ -326,6 +372,67 @@ app.get('/api/horarios/:fecha', async (req, res) => {
         });
 
     }
+
+});
+
+app.post('/login', async (req, res) => {
+
+    const {
+
+        username,
+        password
+
+    } = req.body;
+
+
+    if (username !== adminUser.username) {
+
+        return res.status(401).json({
+
+            message: 'Usuario incorrecto'
+
+        });
+
+    }
+
+
+    const validPassword = await bcrypt.compare(
+
+        password,
+        adminUser.password
+    );
+
+
+    if (!validPassword) {
+
+        return res.status(401).json({
+
+            message: 'Contraseña incorrecta'
+
+        });
+
+    }
+
+
+    req.session.user = username;
+
+
+    res.json({
+
+        message: 'Login exitoso'
+
+    });
+
+});
+
+
+app.get('/login', (req, res) => {
+
+    res.sendFile(
+
+        path.join(__dirname, '../frontend/login.html')
+
+    );
 
 });
 
